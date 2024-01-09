@@ -27,14 +27,25 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    // #[Route(
-    //     "/home",
-    //     name: "home",
-    //     methods: ["get"],
-    // )]
+    #[Route(
+        "/home",
+        name: "home",
+        methods: ["get"],
+    )]
 
-    // public function home()
-    // {
-    //     return $this->render("home.html.twig");
-    // }
+    public function home()
+    {
+        return $this->render("home.html.twig");
+    }
+
+    #[Route(
+        "/about",
+        name: "about",
+        methods: ["get"],
+    )]
+
+    public function about()
+    {
+        return $this->render("about.html.twig");
+    }
 }

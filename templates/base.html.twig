@@ -3,12 +3,15 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
+			{% block title %}
+				May-Dia YANG - Coach développement personnel
 			{% endblock %}
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>"> {% block stylesheets %}{% endblock %}
+		{{ encore_entry_link_tags('app') }}
 
 		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
 			{% block importmap %}
 				{{ importmap('app') }}
 			{% endblock %}
@@ -16,7 +19,27 @@
 	</head>
 
 	<body>
-		{% block body %}{% endblock %}
+		{% block body %}
+			<header>
+				<nav class="bg-black p-4">
+					<ul class="flex justify-center text-white">
+						<li class="m-4">
+							<a href="#">Home</a>
+						</li>
+						<li class="m-4">
+							<a href="#">Concept</a>
+						</li>
+						<li class="m-4">
+							<a href="#">About</a>
+						</li>
+						<li class="m-4">
+							<a href="#">Contact</a>
+						</li>
+					</ul>
+				</nav>
+
+			</header>
+		{% endblock %}
 	</body>
 
 </html>
