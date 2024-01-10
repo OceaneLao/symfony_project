@@ -21,7 +21,7 @@ class UserController extends AbstractController
     //Ajouter des méthodes pour récupérer les données dans les champs de saisie
     #[Route('/user', name: 'app_user', methods: ['GET', 'POST'])]
 
-    //Ajouter l'entité (BDD)
+    // ADD (ajouter une entité)
     public function index(Request $request, EntityManagerInterface $em): Response
     {
         //Déclarer $form (fichier UserType.php)
@@ -138,6 +138,9 @@ class UserController extends AbstractController
             $em->remove($user);
             $em->flush();
             // dd($id);
+
+            //Redirection sur une autre route
+            return $this->redirectToRoute(('app_user'));
         }
         return $this->render("user/read.html.twig", [
             "user" => $user,
