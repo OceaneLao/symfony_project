@@ -39,6 +39,17 @@ class DefaultController extends AbstractController
     }
 
     #[Route(
+        "/concept",
+        name: "concept",
+        methods: ["get"],
+    )]
+
+    public function concept()
+    {
+        return $this->render("concept.html.twig");
+    }
+
+    #[Route(
         "/about",
         name: "about",
         methods: ["get"],
@@ -47,5 +58,16 @@ class DefaultController extends AbstractController
     public function about()
     {
         return $this->render("about.html.twig");
+    }
+
+    #[Route(
+        "/contact",
+        name: "contact",
+        methods: ["get"],
+    )]
+
+    public function contact()
+    {
+        return $this->render("contact.html.twig");
     }
 }

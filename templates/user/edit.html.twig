@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	{{ form_start(form) }}
+	<p>Email:
+		{{ form_widget(form.email) }}</p>
+	<p>Password:
+		{{ form_widget(form.password) }}</p>
+	{{ form_end(form) }}
+{% endblock %}
