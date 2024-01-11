@@ -1,5 +1,6 @@
 {% extends "base.html.twig" %}
-{% block body %}
+
+{% block content %}
 	<p>Email:
 		{{ user.email }}</p>
 	<p>Password:
@@ -10,5 +11,4 @@
 				'method': 'DELETE'
 			}) }}">Delete</a>
 		</button>
-		
 {% endblock %}
