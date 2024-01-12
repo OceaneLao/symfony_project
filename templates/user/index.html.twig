@@ -1,46 +1,39 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}User index{% endblock %}
+
 {% block content %}
-	<div>
-		{{ form_start(form, {
-            "attr": {
-                "class": "pt-10 p-4"
-            }
-        }) }}
+    <h1>User index</h1>
 
-		{{ form_label(form.email, null, {
-            "label_attr": {
-                "class": "bg-regal-blue text-white p-1"
-            }
-        }) }}
-		{{ form_widget(form.email, {
-            "attr": {
-                "class": "border border-black p-1",
-                "placeholder": "Email"
-            }
-        }) }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.password }}</td>
+                <td>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-		{{ form_label(form.password, null, {
-            "label_attr": {
-                "class": "bg-regal-blue text-white p-1"
-            }
-        }) }}
-		{{ form_widget(form.password, {
-            "attr": {
-                "class": "border border-black p-1",
-                "placeholder": "Password"
-            }
-        }) }}
-
-		{{ form_row(form.submit, {
-            "attr": {
-                "class": "mt-5"
-            }
-        }) }}
-
-        <!-- Ajouter un token-->
-        {# {{ form_widget(form._token) }} #}
-
-		{{ form_end(form) }}
-	</div>
+    <a href="{{ path('app_user_new') }}">Create new</a>
 {% endblock %}
