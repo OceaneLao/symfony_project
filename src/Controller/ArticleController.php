@@ -11,13 +11,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/article')]
 class ArticleController extends AbstractController
 {
-    #[Route('/', name: 'app_article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository): Response
+    //Ajouter IsGranted()
+    #[
+        Route('/', name: 'app_article_index', methods: ['GET']),
+        IsGranted('ROLE_ADMIN')
+    ]
+    public function index(
+        ArticleRepository $articleRepository
+        ): Response
     {
+        //Savoir qui est connecté :
+        // dd($this->getUser());
+
+        //Ajouter la méthode denyAccessUnlessGranted() pour donner l'accès au rôle admin
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'ACCESS_GRANTED');
+
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findAll(),
         ]);

@@ -5,6 +5,12 @@
 {% block content %}
     <h1>Article index</h1>
 
+    {# Savoir qui est connecté #}
+    <p>{{ app.user ? app.user.email : '' }}</p>
+
+    {# Afficher la table uniquement si l'utilisateur est connecté #}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    
     <table class="table">
         <thead>
             <tr class="border">
@@ -33,6 +39,7 @@
         </tbody>
         
     </table>
+    {% endif %}
 
     <a href="{{ path('app_article_new') }}">Create new</a>
 {% endblock %}
