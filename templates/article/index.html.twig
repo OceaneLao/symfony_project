@@ -2,12 +2,12 @@
 
 {% block title %}Article index{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>Article index</h1>
 
     <table class="table">
         <thead>
-            <tr>
+            <tr class="border">
                 <th>Id</th>
                 <th>Title</th>
                 <th>Content</th>
@@ -17,9 +17,9 @@
         <tbody>
         {% for article in articles %}
             <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.content }}</td>
+                <td class="border">{{ article.id }}</td>
+                <td class="border">{{ article.title }}</td>
+                <td class="border">{{ article.content }}</td>
                 <td>
                     <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
                     <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
@@ -31,6 +31,7 @@
             </tr>
         {% endfor %}
         </tbody>
+        
     </table>
 
     <a href="{{ path('app_article_new') }}">Create new</a>

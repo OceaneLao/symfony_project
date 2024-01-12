@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,10 +44,22 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_article_show', methods: ['GET'])]
-    public function show(Article $article): Response
+    public function show(
+        Article $article,
+        // Récupérer le repository d'article
+        ArticleRepository $articleRepository,
+        
+        ): Response
     {
+        // Utilisation de la méthode getComments() pour récupérer les commentaires
+        $article = $articleRepository->getComments($article);
+        //dd($article);
         return $this->render('article/show.html.twig', [
-            'article' => $article,
+
+            //Renvoyer le premier élément de l'article
+            'article' => $article[0],
+            //Renvoyer les commentaires
+            // 'comments' => $comments
         ]);
     }
 
