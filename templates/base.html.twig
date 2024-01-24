@@ -21,24 +21,7 @@
 	<body class="flex flex-col h-screen justify-between">
 		{% block body %}
 			{% block navbar %}
-				<header>
-					<nav class="bg-black p-4">
-						<ul class="flex justify-center text-white">
-							<li class="m-4">
-								<a href="{{ path('home') }}">Home</a>
-							</li>
-							<li class="m-4">
-								<a href="{{ path('concept') }}">Concept</a>
-							</li>
-							<li class="m-4">
-								<a href="{{ path('about') }}">About</a>
-							</li>
-							<li class="m-4">
-								<a href="{{ path('contact') }}">Contact</a>
-							</li>
-						</ul>
-					</nav>
-				</header>
+				{% include "header.html.twig" %}
 			{% endblock %}
 
 			{# Créer un block content afin de modifier le contenu quand on change de page.(https://stackoverflow.com/questions/59812003/tailwindcss-fixed-sticky-footer-on-the-bottom) #}
@@ -48,15 +31,7 @@
 			</section>
 
 			{% block footer %}
-				<footer>
-					<div class="bg-black p-4">
-						<ul class="flex justify-center text-white">
-							<li class="m-4">Lorem ipsum</li>
-							<li class="m-4">Lorem ipsum</li>
-							<li class="m-4">Lorem ipsum</li>
-						</ul>
-					</div>
-				</footer>
+				{% include "footer.html.twig" %}
 			{% endblock %}
 		{% endblock %}
 	</body>
