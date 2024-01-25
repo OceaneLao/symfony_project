@@ -3,13 +3,47 @@
 {% block content %}
 
 	<div class="relative">
-		<img src=" {{ asset('images/image_presentation.jpg') }}" alt="Femme bien-être">
-		<div class="absolute place-content-center">
-			<h1>
-				Welcome
-			</h1>
-		</div>
+		<img class="w-full" src=" {{ asset('images/image_presentation.jpg') }}" alt="Femme bien-être">
+		<h1>
+			Welcome to my website
+		</h1>
+		<button class="p-8 bg-black text-white">Discover</button>
 	</div>
 
+
+	<h2>
+		About
+	</h2>
+	<div class="container flex flex-row">
+		<img class="flex-1 p-10 max-w-24" src=" {{ asset('images/image_about.png') }}" alt="">
+		<p class="flex-1 basis-1/2">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse eum dolores nobis cumque iste, expedita harum eligendi, voluptates, sint inventore nesciunt veniam officiis excepturi incidunt. Quo soluta officia vel quos.
+		</p>
+	</div>
+
+	<h2>
+		Customer advices
+	</h2>
+
+	{% for review in reviews %}
+		<p>
+			Last name:
+			{{ review.lastname }}
+		</p>
+		<p>
+			First name:
+			{{ review.firstname }}
+		</p>
+		<p>
+			Comment:
+			{{ review.comment }}
+		</p>
+	{% endfor %}
+
+	<h2>
+		A request ?
+	</h2>
+
+	
 
 {% endblock %}

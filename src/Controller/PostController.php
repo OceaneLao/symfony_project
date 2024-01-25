@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Form\PostFilterType;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,11 +15,29 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/post')]
 class PostController extends AbstractController
 {
-    #[Route('/', name: 'app_post_index', methods: ['GET'])]
-    public function index(PostRepository $postRepository): Response
+    #[Route('/', name: 'app_post_index', methods: [])]
+    public function index(
+        Request $request, 
+        PostRepository $postRepository
+        ): Response
     {
+        //1.Importer le formulaire 
+        $post = new Post();
+        $filterForm = $this->createForm(PostFilterType::class, $post);
+        $filterForm->handleRequest($request);
+        $result = $postRepository->findAll();
+
+        //2. Ajouter la condition
+        if ($filterForm->isSubmitted() && $filterForm->isValid()){
+            $result = $postRepository->filterPost($post);
+            dd($result);
+        }
+
         return $this->render('post/index.html.twig', [
-            'posts' => $postRepository->findAll(),
+            // 'posts' => $postRepository->findAll(),
+            'posts' => $result,
+            // Afficher le formulaire
+            'filterForm' => $filterForm->createView(),
         ]);
     }
 

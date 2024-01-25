@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CustomerReviews index{% endblock %}
+
+{% block body %}
+    <h1>CustomerReviews index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Picture</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Comment</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for customer_review in customer_reviews %}
+            <tr>
+                <td>{{ customer_review.id }}</td>
+                <td>{{ customer_review.picture }}</td>
+                <td>{{ customer_review.firstname }}</td>
+                <td>{{ customer_review.lastname }}</td>
+                <td>{{ customer_review.comment }}</td>
+                <td>
+                    <a href="{{ path('app_customer_reviews_show', {'id': customer_review.id}) }}">show</a>
+                    <a href="{{ path('app_customer_reviews_edit', {'id': customer_review.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_customer_reviews_new') }}">Create new</a>
+{% endblock %}

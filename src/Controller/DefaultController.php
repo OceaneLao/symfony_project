@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CustomerReviewsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -33,9 +34,15 @@ class DefaultController extends AbstractController
         methods: ["get"],
     )]
 
-    public function home()
+    //Importer avis client dans la Homepage
+    //Entrer paramètre dans la fonction home
+    //Récupérer le Repository et l'appeler avec $
+    public function home(CustomerReviewsRepository $reviews)
     {
-        return $this->render("home.html.twig");
+        //Ajouter un array pour afficher les avis clients
+        return $this->render("home.html.twig", [
+            "reviews" => $reviews->findAll()
+        ]);
     }
 
     #[Route(
