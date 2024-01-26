@@ -2,13 +2,17 @@
 
 {% block content %}
 
-	<div class="relative">
-		<img class="w-full" src=" {{ asset('images/image_presentation.jpg') }}" alt="Femme bien-être">
-		<h1>
-			Welcome to my website
-		</h1>
-		<button class="p-8 bg-black text-white">Discover</button>
-	</div>
+<div class="relative">
+    <img class="w-full" src="https://cdn.pixabay.com/photo/2023/12/12/16/15/winter-8445565_1280.jpg" alt="Femme bien-être">
+
+    <div class="absolute inset-0">
+        <h1 class="text-3xl font-bold">
+            Welcome to my website
+        </h1>
+
+        <button class="p-8 bg-black text-white">Discover</button>
+    </div>
+</div>
 
 
 	<h2>
@@ -18,7 +22,9 @@
 		<img class="flex-1 p-10 max-w-24" src=" {{ asset('images/image_about.png') }}" alt="">
 		<p class="flex-1 basis-1/2">
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse eum dolores nobis cumque iste, expedita harum eligendi, voluptates, sint inventore nesciunt veniam officiis excepturi incidunt. Quo soluta officia vel quos.
+			<button class="p-8 bg-black text-white">Book an appointment</button>
 		</p>
+
 	</div>
 
 	<h2>
@@ -38,12 +44,18 @@
 			Comment:
 			{{ review.comment }}
 		</p>
+
+		<button class="p-8 bg-black text-white">Book an appointment</button>
 	{% endfor %}
 
 	<h2>
 		A request ?
 	</h2>
 
-	
-
+	{{ form_start(contactForm) }}
+	{{ form_row((contactForm)) }}
+	<button type="submit">
+		Send
+	</button>
+	{{ form_end(contactForm) }}
 {% endblock %}

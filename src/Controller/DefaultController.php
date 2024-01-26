@@ -2,8 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\ContactType;
 use App\Repository\CustomerReviewsRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
@@ -37,11 +42,26 @@ class DefaultController extends AbstractController
     //Importer avis client dans la Homepage
     //Entrer paramètre dans la fonction home
     //Récupérer le Repository et l'appeler avec $
-    public function home(CustomerReviewsRepository $reviews)
+    public function home(
+        Request $request,
+        CustomerReviewsRepository $reviews,
+        UserRepository $userRepository
+        ): Response
     {
+        // Afficher le formulaire
+        $user = new User();
+        $contactForm = $this->createForm(ContactType::class, $user);
+        $contactForm->handleRequest($request);
+
+        // Condition formulaire est soumis et validé
+        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+            
+        }
+
         //Ajouter un array pour afficher les avis clients
         return $this->render("home.html.twig", [
-            "reviews" => $reviews->findAll()
+            "reviews" => $reviews->findAll(),
+            "contactForm" => $contactForm->createView(),
         ]);
     }
 
