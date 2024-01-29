@@ -14,8 +14,7 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('date')
-        ;
+            ->add('date');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
