@@ -58,20 +58,18 @@ class ProductController extends AbstractController
                     // Upload a publicly accessible file. The file size and type are determined by the SDK.
                     $s3->putObject([
                         'Bucket' => 'symfonyproject',
-                        'Key'    => '$fileName', //Compte => Informations d'identification de sécurité => Clés d'accès
+                        'Key'    => $fileName, //Compte => Informations d'identification de sécurité => Clés d'accès
                         'Body'   => $image,
-                        // 'ACL'    => 'public-read',
+                        'ACL'    => 'public-read',
                         'SourceFile' => $image->getRealPath(),
                         'ContenFile' => $image->getMimeType(),
                         'ContentSHA256' => $sha256
                     ]);
 
-                    dd($this->$s3->getObjectCurl('symfonyproject', $fileName));
                 } catch (S3Exception $error) {
                     dd($error->getMessage());
                 }
-                $product->setImage($fileName);
-                dd($fileName);
+                $product->setImage($s3->getObjectUrl('symfonyproject', $fileName));
             }
 
             $entityManager->persist($product);
