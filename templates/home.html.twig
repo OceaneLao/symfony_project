@@ -2,53 +2,55 @@
 
 {% block content %}
 
-<div class="relative">
-    <img class="w-full" src="{{ asset('images/image_presentation.jpg') }}" alt="Femme bien-être">
+	<div class="relative">
+		<img class="w-full" src="{{ asset('images/image_presentation.jpg') }}" alt="Femme bien-être">
 
-    <div class="absolute inset-0">
-        <h1 class="text-3xl font-bold">
-            Welcome to my website
-        </h1>
+		<div class="absolute inset-0 flex flex-col justify-center items-center">
+			<h1 class="text-3xl font-bold">
+				Welcome to my website
+			</h1>
 
-        <button class="p-8 bg-black text-white">Discover</button>
-    </div>
-</div>
-
-
-	<h2>
-		About
-	</h2>
-	<div class="container flex flex-row">
-		<img class="flex-1 p-10 max-w-24" src=" {{ asset('images/image_about.png') }}" alt="">
-		<p class="flex-1 basis-1/2">
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse eum dolores nobis cumque iste, expedita harum eligendi, voluptates, sint inventore nesciunt veniam officiis excepturi incidunt. Quo soluta officia vel quos.
-			<button class="p-8 bg-black text-white">Book an appointment</button>
-		</p>
-
+			<button class="p-8 bg-black text-white">Discover</button>
+		</div>
 	</div>
 
-	<h2>
+
+	<h2 class="text-2xl font-bold">
+		About
+	</h2>
+	<div class="container flex flex-row items-center px-64">
+		<img class="flex-1 p-10 w-96" src=" {{ asset('images/image_about.png') }}" alt="">
+		<div>
+			<p class="flex-1 basis-1/2">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse eum dolores nobis cumque iste, expedita harum eligendi, voluptates, sint inventore nesciunt veniam officiis excepturi incidunt. Quo soluta officia vel quos.
+			</p>
+			<button class="p-8 bg-black text-white">Book an appointment</button>
+		</div>
+	</div>
+
+	<h2 class="text-2xl font-bold">
 		Customer advices
 	</h2>
 
-	{% for review in reviews %}
-		<p>
-			Last name:
-			{{ review.lastname }}
-		</p>
-		<p>
-			First name:
-			{{ review.firstname }}
-		</p>
-		<p>
-			Comment:
-			{{ review.comment }}
-		</p>
+	<div class="container flex flex-row items-center px-64">
+		<img class="flex-1 p-10 w-96" src="{{ asset('images/john_doe.jpg') }}" alt="">
 
-		<button class="p-8 bg-black text-white">Book an appointment</button>
-	{% endfor %}
+		<div>
+		{% for review in reviews %}
+			<h3 class="text-left text-xl font-bold">
+				{{ review.lastname }} {{ review.firstname }}
+			</h3>
+			<p class="text-left">
+				{{ review.comment }}
+			</p>
+		</div>
+	</div>
+			<button class="p-8 bg-black text-white">Book an appointment</button>
+		{% endfor %}
+	
+	
 
-	<h2>
+	<h2 class="text-2xl font-bold">
 		A request ?
 	</h2>
 
