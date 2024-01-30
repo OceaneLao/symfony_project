@@ -32,10 +32,10 @@
 	</h2>
 
 	<div class="container flex flex-row items-center px-64">
-		<img class="flex-1 p-10 w-96" src="{{ asset('images/john_doe.jpg') }}" alt="">
+		{% for review in reviews %}
+			<img class="w-96 rounded-full" src="{{ review.picture }}" alt="">
 
-		<div>
-			{% for review in reviews %}
+			<div>
 				<h3 class="text-left text-xl font-bold">
 					{{ review.lastname }}
 					{{ review.firstname }}
@@ -43,13 +43,13 @@
 				<p class="text-left">
 					{{ review.comment }}
 				</p>
-			</div>
+			<div class="flex flex-col items-center">
+			<button class="p-8 bg-black text-white">Learn more</button>
+			<button class="p-8 bg-black text-white">Book an appointment</button>
 		</div>
-		<div class="flex-col">
-		<button class="p-8 bg-black text-white">Learn more</button>
-		<button class="p-8 bg-black text-white">Book an appointment</button>
 		</div>
 		
+
 	{% endfor %}
 
 

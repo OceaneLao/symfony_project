@@ -20,7 +20,7 @@
         {% for customer_review in customer_reviews %}
             <tr>
                 <td>{{ customer_review.id }}</td>
-                <td>{{ customer_review.picture }}</td>
+                <td><img src="{{ customer_review.picture }}" alt="" class="w-96 rounded-full"></td>
                 <td>{{ customer_review.firstname }}</td>
                 <td>{{ customer_review.lastname }}</td>
                 <td>{{ customer_review.comment }}</td>
